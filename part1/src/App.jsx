@@ -137,10 +137,9 @@ const App = () => {
   const exercises3 = 14
 
 const Header = (props) => {
+  console.log(props)
   return (
-    <div>
-      <p>{props.course}</p>
-    </div>
+    <h1>{props.course}</h1>
   )
 }
 
