@@ -1,5 +1,3 @@
-const App = () => {
-
 const Header = (props) => {
   console.log(props)
   return (
@@ -29,6 +27,8 @@ const Total = (props) => {
     <div>Total {props.total}</div>
   )
 }
+
+const App = () => {
 
   const part1 = 'Fundamentals of React'
   const exercises1 = 10
