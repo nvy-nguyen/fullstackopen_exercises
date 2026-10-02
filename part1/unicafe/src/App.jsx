@@ -5,8 +5,13 @@ const Button = ({ onClick, text }) =>
     onClick={onClick}>{text}
   </button>
 
-const Statistics = ({ stats1, stats2, stats3, stats4, stats5, stats6 }) => {
-  if (stats1 === 0 & stats2 === 0 & stats3 === 0) {
+const StatisticLine = ({ statName, statValue }) =>
+  <div>
+    <p>{statName} {statValue}</p>
+  </div>
+
+const Statistics = ({ goodCount, neutralCount, badCount, totalCount, averageCount, positiveCount }) => {
+  if (goodCount === 0 & neutralCount === 0 & badCount === 0) {
     return (
       <div>
         <h1>statistics</h1>
@@ -17,12 +22,12 @@ const Statistics = ({ stats1, stats2, stats3, stats4, stats5, stats6 }) => {
   return (
     <div>
       <h1>statistics</h1>
-      <p>good {stats1}</p>
-      <p>neutral {stats2}</p>
-      <p>bad {stats3}</p>    
-      <p>all {stats4}</p>  
-      <p>average {(stats1 - stats3) / stats4 * 100}</p>
-      <p>positive {stats1 / stats4 * 100} %</p>
+      <StatisticLine statName='good' statValue={goodCount} />
+      <StatisticLine statName='neutral' statValue={neutralCount} />
+      <StatisticLine statName='bad' statValue={badCount} />
+      <StatisticLine statName='all' statValue={totalCount} />
+      <StatisticLine statName='average' statValue={averageCount} />
+      <StatisticLine statName='positive' statValue={positiveCount} />
     </div>
   )
 }
@@ -58,13 +63,12 @@ const App = () => {
       <Button onClick={handleGood} text='good'/>
       <Button onClick={handleNeutral} text='neutral'/>
       <Button onClick={handleBad} text='bad'/>   
-
-      <Statistics stats1={good}
-        stats2={neutral}
-        stats3={bad}
-        stats4={total}
-        stats5={(good - bad) / total * 100}
-        stats6={good / total * 100} 
+      <Statistics goodCount={good}
+        neutralCount={neutral}
+        badCount={bad}
+        totalCount={total}
+        averageCount={(good - bad) / total * 100}
+        positiveCount={String(good / total * 100) + ' %'}
       />
     </div>
   )
