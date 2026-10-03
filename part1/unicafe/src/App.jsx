@@ -6,10 +6,12 @@ const Button = ({ onClick, text }) =>
   </button>
 
 const StatisticLine = ({ statName, statValue }) =>
+  <tbody>
     <tr>
       <td>{statName}</td>
       <td>{statValue}</td>
     </tr>
+  </tbody>
 
 const Statistics = ({ goodCount, neutralCount, badCount, totalCount, averageCount, positiveCount }) => {
   if (goodCount === 0 & neutralCount === 0 & badCount === 0) {
