@@ -6,9 +6,10 @@ const Button = ({ onClick, text }) =>
   </button>
 
 const StatisticLine = ({ statName, statValue }) =>
-  <div>
-    <p>{statName} {statValue}</p>
-  </div>
+    <tr>
+      <td>{statName}</td>
+      <td>{statValue}</td>
+    </tr>
 
 const Statistics = ({ goodCount, neutralCount, badCount, totalCount, averageCount, positiveCount }) => {
   if (goodCount === 0 & neutralCount === 0 & badCount === 0) {
@@ -22,12 +23,14 @@ const Statistics = ({ goodCount, neutralCount, badCount, totalCount, averageCoun
   return (
     <div>
       <h1>statistics</h1>
-      <StatisticLine statName='good' statValue={goodCount} />
-      <StatisticLine statName='neutral' statValue={neutralCount} />
-      <StatisticLine statName='bad' statValue={badCount} />
-      <StatisticLine statName='all' statValue={totalCount} />
-      <StatisticLine statName='average' statValue={averageCount} />
-      <StatisticLine statName='positive' statValue={positiveCount} />
+      <table>
+        <StatisticLine statName='good' statValue={goodCount} />
+        <StatisticLine statName='neutral' statValue={neutralCount} />
+        <StatisticLine statName='bad' statValue={badCount} />
+        <StatisticLine statName='all' statValue={totalCount} />
+        <StatisticLine statName='average' statValue={averageCount} />
+        <StatisticLine statName='positive' statValue={positiveCount} />
+      </table> 
     </div>
   )
 }
