@@ -1,73 +1,5 @@
-// import React from 'react'
-
-// const Header = (props) => {
-//       return (
-//         <h1>{props.course}</h1>
-//       )
-//     }
-
-// const Content = () => {
-//       return (
-//         <div>
-//           <Part />
-//         </div>
-//       )
-//     }
-
-// const Part = () => {
-//         // return (
-//         //   // <ul>
-//         //   //   {course.map(info => 
-//         //   //     <li>
-//         //   //       {info.name} {info.exercises}
-//         //   //     </li>
-//         //   //   )}
-//         //   // </ul>
-//         // )
-//       }
-
-// const Course = () => {
-//     return (
-//       <div>
-//         <Header header={course.name} />
-//         <Content />
-//       </div>
-//     )
-//   }
-
-// const App = () => {
-//   const course = {
-//     id: 1,
-//     name: 'Half Stack application development',
-//     parts: [
-//       {
-//         name: 'Fundamentals of React',
-//         exercises: 10,
-//         id: 1
-//       },
-//       {
-//         name: 'Using props to pass data',
-//         exercises: 7,
-//         id: 2
-//       },
-//       {
-//         name: 'State of a component',
-//         exercises: 14,
-//         id: 3
-//       }
-//     ]
-//   }
-
-//   return <Course course={course} />
-// }
-
-// export default App
-
-// // const result = course.map(info => info.name)
-// // console.log(result)
-
 const App = () => {
-  const data = {
+  const course = {
     id: 1,
     name: 'Half Stack application development',
     parts: [
@@ -85,45 +17,55 @@ const App = () => {
         name: 'State of a component',
         exercises: 14,
         id: 3
+      },
+      {
+        name: 'test',
+        exercises: 67,
+        id: 4
       }
-    ]
+    ],
   }
 
   return (
     <div>
-      <Course courseData={data} />
-      <Total
-        total={
-          data.parts[0].exercises +
-          data.parts[1].exercises +
-          data.parts[2].exercises
-        }
-      />
+      <Course courseData={course}/>
     </div>
   )
 }
 
 const Course = (props) => {
   return (
-  <div>
-    <Header courseName={props.courseData.name} />
-    <Content courseParts={props.courseData.parts} />
-  </div>
+    <div>
+      <Header courseName={props.courseData.name} />
+      <Content courseParts={props.courseData.parts} />
+
+    {/* // <Total total={
+    //       course.parts[0].exercises +
+    //       course.parts[1].exercises +
+    //       course.parts[2].exercises
+    //     }
+    // />  */}
+    </div>
   )
 }
 
 const Header = (props) => <h1>{props.courseName}</h1>
 
 const Content = (props) => {
-console.log(JSON.stringify(props, null, 2));
+  console.log(props.courseParts)
   return (
-  <div>
-    <Part part={props.courseParts[0]} />
-    <Part part={props.courseParts[1]} />
-    <Part part={props.courseParts[2]} />
-  </div>
+    <div>
+      {props.courseParts.map(props => <Part key={props.id} part={props}/>)}
+    </div>
   )
 }
+
+// const transformPart = (part) => {
+//   console.log(part)
+//   return (
+//     <Part key={part.id} part={part}/>
+//   )  
+// }
 
 const Part = (props) => (
   <p>
