@@ -1,7 +1,47 @@
-// const Course = ({ }) => {
-//     return (
-//         <h1>{course.name}</h1>
-//     )
+const Course = (props) => (
+  <div>
+    <Header courseName={props.course.name} />
+    <Content courseParts={props.course.parts} />
+    <Total total={props.course.parts.reduce((acc, count) => acc + count.exercises, 0)} />
+  </div>
+)
+
+// const transformCourse = (course) => {
+//   console.log(course)
+//   return (
+//   <div key={course.id}>
+//   <Header courseName={course.name} />
+//   <Content courseParts={course.parts} />
+//   <Total total={course.parts.reduce((acc, count) => acc + count.exercises, 0)} />
+//   </div>
+//   )
 // }
 
-// export default Course
+const Header = (props) => <h3>{props.courseName}</h3>
+
+const Content = (props) => {
+  return (
+    <div>
+      {props.courseParts.map(partObject => <Part key={partObject.id} part={partObject}/>)}
+    </div>
+  )
+}
+
+// const transformPart = (part) => {
+//   console.log(part)
+//   return (
+//     <Part key={part.id} part={part}/>
+//   )  
+// }
+
+const Part = (props) => (
+  <p>
+    {props.part.name} {props.part.exercises}
+  </p>
+)
+
+const Total = (props) => (
+  <p> <strong>total of {props.total} exercises</strong></p>
+)
+
+export default Course
