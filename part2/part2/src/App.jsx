@@ -1,7 +1,10 @@
 const App = () => {
-  const course = {
-    id: 1,
+  const wholeCourse = {
+  name: 'Web development curriculum',
+  courses: [
+  {
     name: 'Half Stack application development',
+    id: 1,
     parts: [
       {
         name: 'Fundamentals of React',
@@ -19,37 +22,66 @@ const App = () => {
         id: 3
       },
       {
-        name: 'test',
-        exercises: 67,
+        name: 'Redux',
+        exercises: 11,
         id: 4
       }
-    ],
+    ]
+  },
+  {
+    name: 'Node.js',
+    id: 2,
+    parts : [
+      {
+        name: 'Routing',
+        exercises: 3,
+        id: 1
+      },
+      {
+        name: 'Middlewares',
+        exercises: 7,
+        id: 2
+      }
+    ]
+  },
+  ]
   }
 
   return (
     <div>
-      <Course courseData={course}/>
+      <h2>{wholeCourse.name}</h2>
+      {wholeCourse.courses.map(transformCourse => 
+        <Course key={transformCourse.id} course={transformCourse} />
+      )}
     </div>
   )
 }
 
-const Course = (props) => {
-  return (
-    <div>
-      <Header courseName={props.courseData.name} />
-      <Content courseParts={props.courseData.parts} />
-      <Total total={props.courseData.parts.reduce((acc, count) => acc + count.exercises, 0)} />
-    </div>
-  )
-}
+const Course = (props) => (
+  <div>
+    <Header courseName={props.course.name} />
+    <Content courseParts={props.course.parts} />
+    <Total total={props.course.parts.reduce((acc, count) => acc + count.exercises, 0)} />
+  </div>
+)
 
-const Header = (props) => <h1>{props.courseName}</h1>
+// const transformCourse = (course) => {
+//   console.log(course)
+//   return (
+//   <div key={course.id}>
+//   <Header courseName={course.name} />
+//   <Content courseParts={course.parts} />
+//   <Total total={course.parts.reduce((acc, count) => acc + count.exercises, 0)} />
+//   </div>
+//   )
+// }
+
+const Header = (props) => <h3>{props.courseName}</h3>
 
 const Content = (props) => {
-  console.log(props.courseParts)
   return (
     <div>
-      {props.courseParts.map(props => <Part key={props.id} part={props}/>)}
+      {props.courseParts.map(partObject => <Part key={partObject.id} part={partObject}/>)}
     </div>
   )
 }
@@ -67,6 +99,8 @@ const Part = (props) => (
   </p>
 )
 
-const Total = (props) => <p>Number of exercises {props.total}</p>
+const Total = (props) => (
+  <p> <strong>total of {props.total} exercises</strong></p>
+)
 
 export default App
